@@ -26,7 +26,11 @@
                 el: '#app',
                 data: data,
                 render: (element) => {
-                    return element('p', data.message)
+                    return element(
+                        'p',
+                        {'style': 'font-size: 20pt; color: red;'},
+                        data.message
+                    )
                 }
             })
 
