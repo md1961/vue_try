@@ -26,21 +26,21 @@
             var app = new Vue({
                 el: '#app',
                 data: data,
-                render: (element) => {
-                    var p = element(
-                        'p',
-                        {style: 'font-size: 20pt;'},
-                        data.message
-                    )
-                    var li = data.items.map(item => element('li', item))
-                    var ol = element('ol', li)
-                    var div = element('div', [p, ol])
-                    return div
+                render: (h) => {
+                    return h('div', [
+                        h('p',
+                            {style: 'font-size: 20pt;'},
+                            data.message
+                        ),
+                        h('ol',
+                            data.items.map(item => h('li', item))
+                        )
+                    ])
                 }
             })
 
             function doAction() {
-                var newData = ['いち', 'に', 'さん', 'よん', 'ご']
+                var newData = ['壱', '弐', '参', '四', '伍']
                 data.message = "You clicked!!"
                 for (n in newData) {
                     data.items[n] = newData[n]
