@@ -27,9 +27,12 @@
                 data: data,
                 render: (element) => {
                     return element(
-                        'p',
-                        {'style': 'font-size: 20pt; color: red;'},
-                        data.message
+                        'ol',
+                        [
+                            element('li', 'Item One'),
+                            element('li', 'Item Two'),
+                            element('li', 'Item Three')
+                        ]
                     )
                 }
             })
