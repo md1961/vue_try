@@ -19,26 +19,32 @@
 
         <script>
             var data = {
-                message: 'Hello, Vue!'
+                message: 'Hello, Vue!',
+                items: ['One', 'Two', 'Three', 'Four', 'Five']
             }
 
             var app = new Vue({
                 el: '#app',
                 data: data,
                 render: (element) => {
-                    return element(
-                        'ol',
-                        [
-                            element('li', 'Item One'),
-                            element('li', 'Item Two'),
-                            element('li', 'Item Three')
-                        ]
+                    var p = element(
+                        'p',
+                        {style: 'font-size: 20pt;'},
+                        data.message
                     )
+                    var li = data.items.map(item => element('li', item))
+                    var ol = element('ol', li)
+                    var div = element('div', [p, ol])
+                    return div
                 }
             })
 
             function doAction() {
+                var newData = ['いち', 'に', 'さん', 'よん', 'ご']
                 data.message = "You clicked!!"
+                for (n in newData) {
+                    data.items[n] = newData[n]
+                }
             }
         </script>
     </body>
