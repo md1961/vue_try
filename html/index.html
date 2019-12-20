@@ -10,23 +10,28 @@
     <body>
         <h1>Vue.js</h1>
         <div id="app">
-            {{ message.toUpperCase() }}
+            {{ message }}
         </div>
         <hr>
-        <input type="text" oninput="doAction(event)">
+        <button onclick="doAction()">
+            click
+        </button>
 
         <script>
             var data = {
-                message: 'Please type something.'
+                message: 'Hello, Vue!'
             }
 
             var app = new Vue({
                 el: '#app',
-                data: data
+                data: data,
+                render: (element) => {
+                    return element('p', data.message)
+                }
             })
 
             function doAction() {
-                data.message = event.target.value
+                data.message = "You clicked!!"
             }
         </script>
     </body>
