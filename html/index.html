@@ -10,41 +10,30 @@
     <body>
         <h1>Vue.js</h1>
         <div id="app">
-            {{ message }}
+            <ol v-html="messages">
         </div>
         <hr>
+        <input type="text" oninput="doInput(event)">
         <button onclick="doAction()">
             click
         </button>
 
         <script>
             var data = {
-                message: 'Hello, Vue!',
-                items: ['One', 'Two', 'Three', 'Four', 'Five']
+                messages: '<li>Hello, Vue!</li>'
             }
 
             var app = new Vue({
                 el: '#app',
-                data: data,
-                render: (h) => {
-                    return h('div', [
-                        h('p',
-                            {style: 'font-size: 20pt;'},
-                            data.message
-                        ),
-                        h('ol',
-                            data.items.map(item => h('li', item))
-                        )
-                    ])
-                }
+                data: data
             })
 
+            function doInput(event) {
+                data.message = event.target.value
+            }
+
             function doAction() {
-                var newData = ['壱', '弐', '参', '四', '伍']
-                data.message = "You clicked!!"
-                for (n in newData) {
-                    data.items[n] = newData[n]
-                }
+                data.messages += '<li>' + data.message + '</li>'
             }
         </script>
     </body>
