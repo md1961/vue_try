@@ -10,17 +10,17 @@
     <body>
         <h1>Vue.js</h1>
         <div id="app">
-            <ol v-html="messages">
+            <p v-bind:style="style">
+                {{ message }}
+            </p>
         </div>
         <hr>
-        <input type="text" oninput="doInput(event)">
-        <button onclick="doAction()">
-            click
-        </button>
+        <input type="number" onchange="doChange(event)">
 
         <script>
             var data = {
-                messages: '<li>Hello, Vue!</li>'
+                message: 'Hello, Vue!',
+                style: 'font-size: 12px; color: red;'
             }
 
             var app = new Vue({
@@ -28,12 +28,8 @@
                 data: data
             })
 
-            function doInput(event) {
-                data.message = event.target.value
-            }
-
-            function doAction() {
-                data.messages += '<li>' + data.message + '</li>'
+            function doChange(event) {
+                data.style = 'font-size: ' + event.target.value + 'px'
             }
         </script>
     </body>
