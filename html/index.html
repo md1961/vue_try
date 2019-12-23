@@ -8,57 +8,31 @@
         <script src="https://unpkg.com/vue"></script>
 
         <style>
-            table {
-                font-size: 16pt;
-            }
-
-            th, td {
-                padding: 5px 15px;
-            }
-
-            th {
-                color: white;
-                background-color: blue;
-            }
-
-            td {
-                color: gray;
-                border: 1px solid gray;
+            .hello {
+                display: inline-block;
+                font-size: 20pt;
+                font-weight: bold;
+                border: 2px solid magenta;
+                padding: 5px 10px 0 10px;
+                margin: 10px;
             }
         </style>
     </head>
     <body>
         <h1>Vue.js</h1>
         <div id="app">
-            <p>テーブル表示</p>
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                </tr>
-                <tr v-for="(item, key) in items">
-                    <td>{{ key        }}</td>
-                    <td>{{ item.email }}</td>
-                    <td>{{ item.phone }}</td>
-                </tr>
-            </table>
+            <hello>
         </div>
         <hr>
         <button onclick="doAction()">click</button>
 
         <script>
-            var data = {
-                items: {
-                    Taro:   {email: 'taro@yamada.jp'  , phone: '111-1111'},
-                    Hanako: {email: 'hanako@flower.jp', phone: '222-2222'},
-                    Junko:  {email: 'junko@pure.jp'   , phone: '333-3333'},
-                }
-            }
+            Vue.component('hello', {
+                template: '<p class="hello">Hello!</p>'
+            })
 
             var app = new Vue({
-                el: '#app',
-                data: data
+                el: '#app'
             })
 
             function doAction() {
