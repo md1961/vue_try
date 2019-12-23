@@ -6,21 +6,38 @@
     <head>
         <title>Vue try</title>
         <script src="https://unpkg.com/vue"></script>
+
+        <style>
+            .red {
+                font-size: 20pt;
+                font-weight: bold;
+                font-style: normal;
+                color: red;
+            }
+
+            .blue {
+                font-size: 24pt;
+                font-weight: normal;
+                font-style: italic;
+                color: blue;
+            }
+        </style>
     </head>
     <body>
         <h1>Vue.js</h1>
         <div id="app">
-            <p v-bind:style="style">
+            <p v-bind:class="{red: isRed, blue: isBlue}">
                 {{ message }}
             </p>
         </div>
         <hr>
-        <input type="number" onchange="doChange(event)">
+        <button onclick="doAction()">click</button>
 
         <script>
             var data = {
                 message: 'Hello, Vue!',
-                style: 'font-size: 12px; color: red;'
+                isRed: true,
+                isBlue: false
             }
 
             var app = new Vue({
@@ -28,8 +45,9 @@
                 data: data
             })
 
-            function doChange(event) {
-                data.style = 'font-size: ' + event.target.value + 'px'
+            function doAction() {
+                data.isRed  = !data.isRed
+                data.isBlue = !data.isBlue
             }
         </script>
     </body>
