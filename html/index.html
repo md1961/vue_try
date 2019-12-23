@@ -12,13 +12,16 @@
                 font-size: 16pt;
             }
 
-            table tr th {
-                color: white;
-                background-color: blue;
+            th, td {
                 padding: 5px 15px;
             }
 
-            table tr td {
+            th {
+                color: white;
+                background-color: blue;
+            }
+
+            td {
                 color: gray;
                 border: 1px solid gray;
             }
@@ -30,11 +33,13 @@
             <p>テーブル表示</p>
             <table>
                 <tr>
+                    <th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
                 </tr>
-                <tr v-for="item in items">
+                <tr v-for="(item, index) in items">
+                    <td>{{ index      }}</td>
                     <td>{{ item.name  }}</td>
                     <td>{{ item.email }}</td>
                     <td>{{ item.phone }}</td>
