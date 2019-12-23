@@ -8,16 +8,23 @@
         <script src="https://unpkg.com/vue"></script>
 
         <style>
-            .ok {
-                display: inline-block;
-                font-size: 24pt;
-                color: blue;
-                padding: 5px 10px;
-                border: 2px solid red;
+            table {
+                font-size: 16pt;
             }
 
-            .ng {
-                font-size: 20pt;
+            table tr th {
+                color: white;
+                background-color: blue;
+                padding: 5px 15px;
+            }
+
+            table tr td {
+                color: gray;
+                border: 1px solid gray;
+            }
+
+            li {
+                font-size: 16pt;
                 color: gray;
             }
         </style>
@@ -25,21 +32,30 @@
     <body>
         <h1>Vue.js</h1>
         <div id="app">
-            <p v-if="isOk" class="ok">
-                {{ messageOk }}
-            </p>
-            <p v-else class="ng">
-                {{ messageNg }}
-            </p>
+            <template v-if="usesTable">
+                <p>テーブル表示</p>
+                <table>
+                    <tr><th>Name</th><th>Email</th></tr>
+                    <tr><td>Taro</td><td>taro@yamada.jp</td></tr>
+                    <tr><td>Hanako</td><td>hanako@flower.jp</td></tr>
+                    <tr><td>Sachiko</td><td>sachiko@happy.jp</td></tr>
+                </table>
+            </template>
+            <template v-else>
+                <p>リスト表示</p>
+                <ul>
+                    <li>Taro のアドレスは taro@yamada.jp です。</li>
+                    <li>Hanako のアドレスは hanako@flower.jp です。</li>
+                    <li>Sachiko のアドレスは sachiko@happy.jp です。</li>
+                </ul>
+            </template>
         </div>
         <hr>
         <button onclick="doAction()">click</button>
 
         <script>
             var data = {
-                messageOk: 'これは正常な表示です。',
-                messageNg: '※現在、問題が発生中です……',
-                isOk: true
+                usesTable: true
             }
 
             var app = new Vue({
@@ -48,7 +64,7 @@
             })
 
             function doAction() {
-                data.isOk = !data.isOk
+                data.usesTable = !data.usesTable
             }
         </script>
     </body>
