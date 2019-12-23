@@ -22,40 +22,37 @@
                 color: gray;
                 border: 1px solid gray;
             }
-
-            li {
-                font-size: 16pt;
-                color: gray;
-            }
         </style>
     </head>
     <body>
         <h1>Vue.js</h1>
         <div id="app">
-            <template v-if="usesTable">
-                <p>テーブル表示</p>
-                <table>
-                    <tr><th>Name</th><th>Email</th></tr>
-                    <tr><td>Taro</td><td>taro@yamada.jp</td></tr>
-                    <tr><td>Hanako</td><td>hanako@flower.jp</td></tr>
-                    <tr><td>Sachiko</td><td>sachiko@happy.jp</td></tr>
-                </table>
-            </template>
-            <template v-else>
-                <p>リスト表示</p>
-                <ul>
-                    <li>Taro のアドレスは taro@yamada.jp です。</li>
-                    <li>Hanako のアドレスは hanako@flower.jp です。</li>
-                    <li>Sachiko のアドレスは sachiko@happy.jp です。</li>
-                </ul>
-            </template>
+            <p>テーブル表示</p>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+                <tr v-for="item in items">
+                    <td>{{ item.name  }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.phone }}</td>
+                </tr>
+            </table>
         </div>
         <hr>
         <button onclick="doAction()">click</button>
 
         <script>
             var data = {
-                usesTable: true
+                items: [
+                    {name: 'Taro'   , email: 'taro@yamada.jp'  , phone: '111-1111'},
+                    {name: 'Hanako' , email: 'hanako@flower.jp', phone: '222-2222'},
+                    {name: 'Sachiko', email: 'sachiko@happy.jp', phone: '333-3333'},
+                    {name: 'Jiro'   , email: 'jiro@change.jp'  , phone: '444-4444'},
+                    {name: 'Mami'   , email: 'mami@mumemo.jp'  , phone: '555-5555'}
+                ]
             }
 
             var app = new Vue({
@@ -64,7 +61,6 @@
             })
 
             function doAction() {
-                data.usesTable = !data.usesTable
             }
         </script>
     </body>
