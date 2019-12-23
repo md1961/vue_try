@@ -6,27 +6,11 @@
     <head>
         <title>Vue try</title>
         <script src="https://unpkg.com/vue"></script>
-
-        <style>
-            .red {
-                font-size: 20pt;
-                font-weight: bold;
-                font-style: normal;
-                color: red;
-            }
-
-            .blue {
-                font-size: 24pt;
-                font-weight: normal;
-                font-style: italic;
-                color: blue;
-            }
-        </style>
     </head>
     <body>
         <h1>Vue.js</h1>
         <div id="app">
-            <p v-bind:class="classes">
+            <p v-bind:style="styles">
                 {{ message }}
             </p>
         </div>
@@ -34,14 +18,17 @@
         <button onclick="doAction()">click</button>
 
         <script>
-            var classObj = {
-                red:  true,
-                blue: false
-            }
-
             var data = {
                 message: 'Hello, Vue!',
-                classes: classObj
+                styles: {
+                    display: 'inline-block',
+                    fontSize: '20pt',
+                    color: 'blue',
+                    backgroundColor: '#fee',
+                    border: '3px solid blue',
+                    padding: '5px 20px',
+                    margin: '10px'
+                }
             }
 
             var app = new Vue({
@@ -50,8 +37,6 @@
             })
 
             function doAction() {
-                classObj.red  = !classObj.red
-                classObj.blue = !classObj.blue
             }
         </script>
     </body>
