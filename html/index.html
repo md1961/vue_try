@@ -6,12 +6,30 @@
     <head>
         <title>Vue try</title>
         <script src="https://unpkg.com/vue"></script>
+
+        <style>
+            .ok {
+                display: inline-block;
+                font-size: 24pt;
+                color: blue;
+                padding: 5px 10px;
+                border: 2px solid red;
+            }
+
+            .ng {
+                font-size: 20pt;
+                color: gray;
+            }
+        </style>
     </head>
     <body>
         <h1>Vue.js</h1>
         <div id="app">
-            <p v-bind:style="styles">
-                {{ message }}
+            <p v-if="isOk" class="ok">
+                {{ messageOk }}
+            </p>
+            <p v-else class="ng">
+                {{ messageNg }}
             </p>
         </div>
         <hr>
@@ -19,16 +37,9 @@
 
         <script>
             var data = {
-                message: 'Hello, Vue!',
-                styles: {
-                    display: 'inline-block',
-                    fontSize: '20pt',
-                    color: 'blue',
-                    backgroundColor: '#fee',
-                    border: '3px solid blue',
-                    padding: '5px 20px',
-                    margin: '10px'
-                }
+                messageOk: 'これは正常な表示です。',
+                messageNg: '※現在、問題が発生中です……',
+                isOk: true
             }
 
             var app = new Vue({
@@ -37,6 +48,7 @@
             })
 
             function doAction() {
+                data.isOk = !data.isOk
             }
         </script>
     </body>
