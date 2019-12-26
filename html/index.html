@@ -44,7 +44,9 @@
                         this.isRed = this.counter % 2 === 1
                     }
                 },
-                template: '<p v-on:click="count" v-bind:class="{red: isRed}" class="hello">Click to count: {{ counter }}</p>'
+                template: `<p v-on:click="count" v-bind:class="{red: isRed}" class="hello">
+                             Click to count: {{ counter }}
+                           </p>`
             })
 
             var app = new Vue({
