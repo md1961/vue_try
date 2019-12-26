@@ -9,6 +9,7 @@
 
         <style>
             .hello {
+                cursor: pointer;
                 display: inline-block;
                 font-size: 20pt;
                 font-weight: bold;
@@ -21,17 +22,17 @@
     <body>
         <h1>Vue.js</h1>
         <div id="app">
-            <div><hello v-bind:name="name" /></div>
-            <div><input type="text" v-model="name" /></div>
+            <hello />
         </div>
         <hr>
         <button onclick="doAction()">click</button>
 
         <script>
             Vue.component('hello', {
-                // props: ['name'],
-                props: {name: String},
-                template: '<p class="hello">Hello, {{ name }}!</p>'
+                data: () => ({
+                    counter: 0
+                }),
+                template: '<p v-on:click="counter++" class="hello">Click to count: {{ counter }}</p>'
             })
 
             var app = new Vue({
