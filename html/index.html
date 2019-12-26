@@ -17,11 +17,6 @@
                 padding: 5px 10px 0 10px;
                 margin: 10px;
             }
-
-            .red {
-                color: white;
-                background-color: red;
-            }
         </style>
     </head>
     <body>
@@ -35,18 +30,25 @@
         <script>
             Vue.component('hello', {
                 data: () => ({
-                    counter: 0,
-                    isRed: false
+                    num: 0,
+                    message: 'Input number'
                 }),
                 methods: {
-                    count: function() {
-                        this.counter++
-                        this.isRed = this.counter % 2 === 1
+                    calc: function() {
+                        n = parseInt(this.num)
+                        this.message = `Total is ${(n + 1) * n / 2}`
                     }
                 },
-                template: `<p v-on:click="count" v-bind:class="{red: isRed}" class="hello">
-                             Click to count: {{ counter }}
-                           </p>`
+                template: `
+                    <div>
+                        <p class="hello">
+                            {{ message }}
+                        </p>
+                        <div>
+                            <input type="number" v-on:input="calc" v-model="num">
+                        </div>
+                    </div>
+                `
             })
 
             var app = new Vue({
