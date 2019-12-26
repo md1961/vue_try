@@ -21,17 +21,17 @@
     <body>
         <h1>Vue.js</h1>
         <div id="app">
-            <hello>
+            <div><hello name="太郎" /></div>
+            <div><hello name="花子" /></div>
         </div>
         <hr>
         <button onclick="doAction()">click</button>
 
         <script>
             Vue.component('hello', {
-                data: () => ({
-                    message: 'これは新しいメッセージです。'
-                }),
-                template: '<p class="hello">{{ message }}</p>'
+                // props: ['name'],
+                props: {name: String},
+                template: '<p class="hello">Hello, {{ name }}!</p>'
             })
 
             var app = new Vue({
