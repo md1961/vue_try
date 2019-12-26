@@ -21,8 +21,8 @@
     <body>
         <h1>Vue.js</h1>
         <div id="app">
-            <div><hello name="太郎" /></div>
-            <div><hello name="花子" /></div>
+            <div><hello v-bind:name="name" /></div>
+            <div><input type="text" v-model="name" /></div>
         </div>
         <hr>
         <button onclick="doAction()">click</button>
@@ -35,7 +35,10 @@
             })
 
             var app = new Vue({
-                el: '#app'
+                el: '#app',
+                data: {
+                    name: 'no name'
+                }
             })
 
             function doAction() {
